@@ -8,10 +8,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,7 +16,6 @@
     <!-- GSAP & Lenis -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
 
     <!-- Tailwind Config -->
@@ -30,7 +26,6 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
-                        mono: ['Manrope', 'sans-serif'],
                     },
                     colors: {
                         brand: {
@@ -55,54 +50,11 @@
                     },
                     animation: {
                         'marquee': 'marquee 25s linear infinite',
-                        'marquee-reverse': 'marquee-reverse 25s linear infinite',
-                        'float': 'float 6s ease-in-out infinite',
-                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                        'shimmer': 'shimmer 2s linear infinite',
-                        'gradient': 'gradient 8s ease infinite',
-                        'slide-up': 'slideUp 0.5s ease-out',
-                        'fade-in': 'fadeIn 0.6s ease-out',
-                        'scale-in': 'scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                        'blob': 'blob 7s infinite',
                     },
                     keyframes: {
                         marquee: {
                             '0%': { transform: 'translateX(0%)' },
                             '100%': { transform: 'translateX(-100%)' },
-                        },
-                        'marquee-reverse': {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(0%)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-500px 0' },
-                            '100%': { backgroundPosition: '500px 0' },
-                        },
-                        gradient: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' },
-                        },
-                        slideUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: 0 },
-                            '100%': { transform: 'translateY(0)', opacity: 1 },
-                        },
-                        fadeIn: {
-                            '0%': { opacity: 0 },
-                            '100%': { opacity: 1 },
-                        },
-                        scaleIn: {
-                            '0%': { transform: 'scale(0.95)', opacity: 0 },
-                            '100%': { transform: 'scale(1)', opacity: 1 },
-                        },
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
                         }
                     }
                 }
@@ -111,7 +63,7 @@
     </script>
 
     <!-- Alpine.js -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
         [x-cloak] { display: none !important; }
@@ -138,11 +90,11 @@
             background: #fafaf9;
         }
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #ec4899, #db2777);
+            background: #d6d3d1;
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #db2777, #be185d);
+            background: #a8a29e;
         }
 
         /* Utility Classes for Animation */
@@ -162,7 +114,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: linear-gradient(135deg, #1c1917 0%, #292524 100%);
+            background: #fff;
             z-index: 9999;
             display: flex;
             justify-content: center;
@@ -172,170 +124,70 @@
         
         .loader-text {
             overflow: hidden;
-            background: linear-gradient(90deg, #fff, #fbcfe8, #fff);
-            background-size: 200% 100%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gradient 3s linear infinite;
         }
         .loader-text span {
             display: inline-block;
             transform: translateY(100%);
         }
         
-        /* Blob Animation */
-        .blob {
-            position: absolute;
-            background: linear-gradient(45deg, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.05));
-            border-radius: 50%;
-            filter: blur(40px);
-            z-index: -1;
-        }
-        
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(90deg, #ec4899, #db2777, #be185d);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        /* Glass Morphism */
-        .glass {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
         /* Snap Scroll for Stories */
         .snap-mandatory::-webkit-scrollbar {
             display: none;
         }
-        
-        /* Hover Effects */
-        .hover-lift {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .hover-lift:hover {
-            transform: translateY(-8px);
-        }
-        
-        .hover-glow {
-            transition: box-shadow 0.3s ease;
-        }
-        .hover-glow:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Shimmer Button Effect */
-        .shimmer-btn {
-            position: relative;
-            overflow: hidden;
-        }
-        .shimmer-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.3) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            animation: shimmer 3s infinite;
-        }
-        
-        /* Gradient Border */
-        .gradient-border {
-            position: relative;
-            border: double 2px transparent;
-            background-image: linear-gradient(white, white), 
-                              linear-gradient(45deg, #ec4899, #db2777, #be185d);
-            background-origin: border-box;
-            background-clip: padding-box, border-box;
-        }
     </style>
 </head>
-<body class="antialiased text-stone-800 bg-white overflow-x-hidden" x-data="{ cartOpen: false, mobileMenuOpen: false, searchOpen: false, activeMood: null }">
+<body class="antialiased text-stone-800 bg-white" x-data="{ cartOpen: false, mobileMenuOpen: false, searchOpen: false }">
 
     <!-- Preloader -->
     <div id="preloader">
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="blob w-96 h-96 top-1/4 left-1/4 animate-blob"></div>
-            <div class="blob w-96 h-96 top-1/3 right-1/4 animate-blob animation-delay-2000"></div>
-            <div class="blob w-96 h-96 bottom-1/4 left-1/3 animate-blob animation-delay-4000"></div>
-        </div>
-        <div class="loader-text font-serif text-5xl md:text-7xl font-bold tracking-tighter z-10">
-            <span>H</span><span>E</span><span>R</span><span class="text-brand-500">.</span><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span>
+        <div class="loader-text font-serif text-5xl md:text-7xl font-bold text-brand-800 tracking-tighter">
+            <span>H</span><span>E</span><span>R</span><span>.</span><span>S</span><span>T</span><span>U</span><span>D</span><span>I</span><span>O</span>
         </div>
     </div>
 
     <!-- Announcement Bar -->
-    <div class="bg-gradient-to-r from-brand-800 to-brand-900 text-white text-xs md:text-sm font-medium py-3 text-center tracking-[0.2em] uppercase z-50 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
-        <div class="relative z-10">
-            <i class="fas fa-shipping-fast mr-2"></i> Free shipping on orders over $100 
-            <span class="mx-4">•</span>
-            <span class="font-bold">Join the tribe</span>
-        </div>
+    <div class="bg-brand-900 text-white text-[10px] md:text-xs font-medium py-2.5 text-center tracking-[0.2em] uppercase z-50 relative">
+        Free shipping on orders over $100 — Join the tribe
     </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-40 transition-all duration-300" id="navbar">
-        <div class="absolute inset-0 bg-white/90 backdrop-blur-lg border-b border-stone-100 transition-all duration-300" id="nav-bg"></div>
+        <div class="absolute inset-0 bg-white/80 backdrop-blur-md border-b border-stone-100 transition-opacity duration-300" id="nav-bg"></div>
         <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative">
             <div class="flex justify-between items-center h-20">
                 
                 <!-- Mobile Menu Button -->
                 <div class="flex items-center md:hidden">
-                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-stone-800 hover:text-brand-700 p-2 transition-all hover:scale-110 active:scale-95">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
-                            <path x-show="mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-stone-800 hover:text-brand-700 p-2 transition-transform hover:scale-110">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
 
                 <!-- Desktop Nav Links (Left) -->
                 <div class="hidden md:flex space-x-10 items-center">
-                    <a href="#" class="nav-link text-xs font-medium hover:text-brand-700 transition-all duration-300 uppercase tracking-[0.15em] relative group">
-                        <span class="relative z-10">Shop All</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#new" class="nav-link text-xs font-medium hover:text-brand-700 transition-all duration-300 uppercase tracking-[0.15em] relative group">
-                        <span class="relative z-10">New Arrivals</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
-                    <a href="#collections" class="nav-link text-xs font-medium hover:text-brand-700 transition-all duration-300 uppercase tracking-[0.15em] relative group">
-                        <span class="relative z-10">Collections</span>
-                        <span class="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-300 group-hover:w-full"></span>
-                    </a>
+                    <a href="#" class="nav-link text-xs font-medium hover:text-brand-700 transition-colors uppercase tracking-[0.15em] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-brand-700 after:transition-all after:duration-300 hover:after:w-full">Shop All</a>
+                    <a href="#new" class="nav-link text-xs font-medium hover:text-brand-700 transition-colors uppercase tracking-[0.15em] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-brand-700 after:transition-all after:duration-300 hover:after:w-full">New Arrivals</a>
+                    <a href="#collections" class="nav-link text-xs font-medium hover:text-brand-700 transition-colors uppercase tracking-[0.15em] relative after:content-[''] after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1px] after:bg-brand-700 after:transition-all after:duration-300 hover:after:w-full">Collections</a>
                 </div>
 
                 <!-- Logo (Center) -->
                 <div class="flex-shrink-0 flex items-center justify-center absolute left-1/2 transform -translate-x-1/2">
-                    <a href="#" class="font-serif text-3xl font-bold tracking-tighter text-stone-900 group relative">
-                        <span class="relative z-10">HER<span class="gradient-text">.</span>STUDIO</span>
-                        <span class="absolute inset-0 blur-xl opacity-30 bg-gradient-to-r from-brand-400 to-brand-600 group-hover:opacity-50 transition-opacity duration-300"></span>
+                    <a href="#" class="font-serif text-3xl font-bold tracking-tighter text-stone-900 group">
+                        HER<span class="text-brand-600 inline-block transition-transform group-hover:-translate-y-1">.</span>STUDIO
                     </a>
                 </div>
 
                 <!-- Icons (Right) -->
                 <div class="flex items-center space-x-4 md:space-x-8">
-                    <button @click="searchOpen = !searchOpen" class="text-stone-800 hover:text-brand-700 transition-all duration-300 hover:scale-110 active:scale-95">
-                        <i class="fas fa-search text-lg"></i>
+                    <button @click="searchOpen = !searchOpen" class="text-stone-800 hover:text-brand-700 transition-transform hover:scale-110">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
-                    <a href="#" class="hidden md:block text-stone-800 hover:text-brand-700 transition-all duration-300 hover:scale-110">
-                        <i class="far fa-user text-lg"></i>
+                    <a href="#" class="hidden md:block text-stone-800 hover:text-brand-700 transition-transform hover:scale-110">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </a>
-                    <button @click="cartOpen = true" class="text-stone-800 hover:text-brand-700 transition-all duration-300 hover:scale-110 active:scale-95 relative group">
-                        <i class="fas fa-shopping-bag text-lg"></i>
-                        <span class="absolute -top-1 -right-1 bg-gradient-to-r from-brand-600 to-brand-700 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform animate-pulse-slow">2</span>
+                    <button @click="cartOpen = true" class="text-stone-800 hover:text-brand-700 transition-transform hover:scale-110 relative group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <span class="absolute -top-1 -right-1 bg-brand-700 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-transform">2</span>
                     </button>
                 </div>
             </div>
@@ -350,15 +202,15 @@
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-4"
              @click.away="mobileMenuOpen = false"
-             class="md:hidden glass border-t border-white/30 absolute w-full left-0 z-50 shadow-2xl" x-cloak>
+             class="md:hidden bg-white border-t border-gray-100 absolute w-full left-0 z-50 shadow-lg" x-cloak>
             <div class="px-6 pt-4 pb-8 space-y-4">
-                <a href="#" class="block text-lg font-serif italic text-stone-900 hover:text-brand-700 transition-colors py-2 border-b border-white/20">Shop All</a>
-                <a href="#" class="block text-lg font-serif italic text-stone-900 hover:text-brand-700 transition-colors py-2 border-b border-white/20">New Arrivals</a>
-                <a href="#" class="block text-lg font-serif italic text-stone-900 hover:text-brand-700 transition-colors py-2 border-b border-white/20">Best Sellers</a>
-                <a href="#" class="block text-lg font-serif italic text-stone-900 hover:text-brand-700 transition-colors py-2">Sustainability</a>
+                <a href="#" class="block text-lg font-serif italic text-stone-900">Shop All</a>
+                <a href="#" class="block text-lg font-serif italic text-stone-900">New Arrivals</a>
+                <a href="#" class="block text-lg font-serif italic text-stone-900">Best Sellers</a>
+                <a href="#" class="block text-lg font-serif italic text-stone-900">Sustainability</a>
                 <div class="border-t border-stone-100 mt-6 pt-6 flex flex-col space-y-3">
-                    <a href="#" class="text-xs uppercase tracking-widest text-gray-500 hover:text-brand-700 transition-colors"><i class="far fa-user mr-2"></i> My Account</a>
-                    <a href="#" class="text-xs uppercase tracking-widest text-gray-500 hover:text-brand-700 transition-colors"><i class="fas fa-sign-out-alt mr-2"></i> Sign Out</a>
+                    <a href="#" class="text-xs uppercase tracking-widest text-gray-500">My Account</a>
+                    <a href="#" class="text-xs uppercase tracking-widest text-gray-500">Sign Out</a>
                 </div>
             </div>
         </div>
@@ -366,7 +218,7 @@
 
     <!-- Search Overlay -->
     <div x-show="searchOpen" class="relative z-[60]" x-cloak>
-        <div class="fixed inset-0 bg-stone-900/60 backdrop-blur-lg transition-opacity duration-500" @click="searchOpen = false"></div>
+        <div class="fixed inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity" @click="searchOpen = false"></div>
         <div class="fixed top-0 left-0 w-full bg-white pt-24 pb-12 shadow-2xl transform transition-all duration-500"
              x-show="searchOpen"
              x-transition:enter="transition ease-out duration-500"
@@ -376,20 +228,19 @@
              x-transition:leave-start="translate-y-0"
              x-transition:leave-end="-translate-y-full">
             <div class="max-w-4xl mx-auto px-6">
-                <div class="relative flex items-center border-b-2 border-stone-200 focus-within:border-brand-600 transition-colors duration-300 pb-4">
-                    <i class="fas fa-search text-2xl text-stone-400 mr-6"></i>
-                    <input type="text" placeholder="Search for sustainable fashion..." class="w-full text-3xl md:text-5xl outline-none placeholder-stone-300 font-serif italic text-stone-900 bg-transparent">
+                <div class="relative flex items-center border-b-2 border-stone-200 focus-within:border-stone-900 transition-colors duration-300 pb-4">
+                    <svg class="w-8 h-8 text-stone-400 mr-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" placeholder="Search..." class="w-full text-3xl md:text-5xl outline-none placeholder-stone-300 font-serif italic text-stone-900 bg-transparent">
                     <button @click="searchOpen = false" class="ml-6 text-stone-400 hover:text-stone-900 transition-colors">
-                        <i class="fas fa-times text-2xl"></i>
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path></svg>
                     </button>
                 </div>
                 <div class="mt-8">
                     <p class="text-xs font-bold uppercase tracking-widest text-stone-400 mb-4">Trending Now</p>
                     <div class="flex flex-wrap gap-3">
-                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-all duration-300 hover:-translate-y-1">Linen Blazer</a>
-                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-all duration-300 hover:-translate-y-1">Silk Dress</a>
-                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-all duration-300 hover:-translate-y-1">Wide Leg Denim</a>
-                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-all duration-300 hover:-translate-y-1">Sustainable Activewear</a>
+                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-colors">Linen Blazer</a>
+                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-colors">Silk Dress</a>
+                        <a href="#" class="px-4 py-2 bg-stone-100 rounded-full text-sm hover:bg-stone-200 transition-colors">Wide Leg Denim</a>
                     </div>
                 </div>
             </div>
@@ -397,4 +248,648 @@
     </div>
 
     <!-- Hero Section -->
-    <div class="relative h-screen min-h-[800px] overflow-hidden bg-gradient-to-br from-stone
+    <div class="relative h-screen min-h-[700px] overflow-hidden bg-stone-100">
+        <!-- Hero Background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-black/10 z-10"></div>
+            <img id="hero-image" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop" alt="Hero" class="w-full h-full object-cover object-center scale-110 opacity-0">
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-4 max-w-[1440px] mx-auto">
+            <div class="overflow-hidden mb-6">
+                <p id="hero-subtitle" class="text-white text-sm md:text-base font-medium tracking-[0.3em] uppercase transform translate-y-full">Sustainable. Ethical. Timeless.</p>
+            </div>
+            
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-9xl text-white leading-[0.9] mb-10 overflow-hidden tracking-tight">
+                <span class="hero-line block transform translate-y-full">Wear Your</span>
+                <span class="hero-line block transform translate-y-full italic font-light text-brand-200">Confidence</span>
+                <span class="hero-line block transform translate-y-full">Fiercely</span>
+            </h1>
+            
+            <div class="overflow-hidden">
+                <a href="#new" id="hero-btn" class="inline-block bg-white text-stone-900 px-10 py-4 text-xs md:text-sm font-bold tracking-[0.2em] uppercase hover:bg-brand-50 transition-all duration-300 transform translate-y-[200%] opacity-0 hover:scale-105">
+                    Shop The Collection
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+            <svg class="w-6 h-6 text-white opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </div>
+
+    <!-- Marquee / Trust Bar -->
+    <div class="bg-brand-800 py-5 overflow-hidden border-b border-brand-800 relative z-20">
+        <div class="flex whitespace-nowrap animate-marquee items-center text-xs md:text-sm font-medium tracking-[0.2em] text-white/90 uppercase">
+            <span class="mx-8">Ethically Made</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Cruelty Free</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Premium Fabric</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Inclusive Sizing</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Carbon Neutral</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Ethically Made</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Cruelty Free</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Premium Fabric</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Inclusive Sizing</span> <span class="text-brand-400">•</span>
+            <span class="mx-8">Carbon Neutral</span> <span class="text-brand-400">•</span>
+        </div>
+    </div>
+
+    <!-- Shop by Mood (Animated Grid) -->
+    <section class="py-24 md:py-32 bg-white" id="collections">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center mb-20 text-center gsap-fade-up">
+                <span class="text-brand-600 text-xs font-bold tracking-[0.2em] uppercase mb-4">Curated For You</span>
+                <h2 class="font-serif text-4xl md:text-6xl text-stone-900">Shop By Mood</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <a href="#" class="group block relative overflow-hidden mood-card opacity-0 translate-y-10">
+                    <div class="aspect-[3/4] overflow-hidden bg-stone-100 relative">
+                        <img src="https://images.unsplash.com/photo-1548624149-f3219de155da?q=80&w=1000&auto=format&fit=crop" alt="Lounge" class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <span class="bg-white text-stone-900 px-6 py-3 text-xs font-bold uppercase tracking-widest">Explore</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 text-center">
+                        <h3 class="font-serif text-2xl text-stone-900 italic">Slow Sunday</h3>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-2 group-hover:text-brand-600 transition-colors">Lounge & Intimates</p>
+                    </div>
+                </a>
+
+                <!-- Card 2 -->
+                <a href="#" class="group block relative overflow-hidden mood-card opacity-0 translate-y-10">
+                    <div class="aspect-[3/4] overflow-hidden bg-stone-100 relative">
+                        <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?q=80&w=1000&auto=format&fit=crop" alt="Work" class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <span class="bg-white text-stone-900 px-6 py-3 text-xs font-bold uppercase tracking-widest">Explore</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 text-center">
+                        <h3 class="font-serif text-2xl text-stone-900 italic">9 to 5 Chic</h3>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-2 group-hover:text-brand-600 transition-colors">Workwear</p>
+                    </div>
+                </a>
+
+                <!-- Card 3 -->
+                <a href="#" class="group block relative overflow-hidden mood-card opacity-0 translate-y-10">
+                    <div class="aspect-[3/4] overflow-hidden bg-stone-100 relative">
+                        <img src="https://images.unsplash.com/photo-1566174053879-31528523f8ae?q=80&w=1000&auto=format&fit=crop" alt="Date Night" class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <span class="bg-white text-stone-900 px-6 py-3 text-xs font-bold uppercase tracking-widest">Explore</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 text-center">
+                        <h3 class="font-serif text-2xl text-stone-900 italic">Golden Hour</h3>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-2 group-hover:text-brand-600 transition-colors">Dresses & Sets</p>
+                    </div>
+                </a>
+
+                <!-- Card 4 -->
+                <a href="#" class="group block relative overflow-hidden mood-card opacity-0 translate-y-10">
+                    <div class="aspect-[3/4] overflow-hidden bg-stone-100 relative">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" alt="Everyday" class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                         <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">
+                            <span class="bg-white text-stone-900 px-6 py-3 text-xs font-bold uppercase tracking-widest">Explore</span>
+                        </div>
+                    </div>
+                    <div class="pt-6 text-center">
+                        <h3 class="font-serif text-2xl text-stone-900 italic">Effortless</h3>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-2 group-hover:text-brand-600 transition-colors">Denim & Basics</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured / Parallax Section -->
+    <section class="py-24 bg-brand-50 relative overflow-hidden" id="new">
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-brand-100/50 skew-x-12 transform translate-x-20"></div>
+        
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div class="gsap-fade-right">
+                    <h2 class="font-serif text-5xl md:text-6xl text-stone-900 mb-4">HER Favorites</h2>
+                    <p class="text-stone-600 text-lg font-light max-w-md">Pieces that tell a story. Consciously crafted for the modern muse.</p>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-2 group mt-8 md:mt-0">
+                    <span class="text-sm font-bold uppercase tracking-widest group-hover:text-brand-700 transition-colors">View All</span>
+                    <span class="w-8 h-[1px] bg-stone-900 group-hover:w-12 group-hover:bg-brand-700 transition-all duration-300"></span>
+                </a>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Product 1 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] w-full overflow-hidden bg-white relative">
+                         <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest z-10 text-stone-900 border border-stone-100">Best Seller</span>
+                        <img src="https://images.unsplash.com/photo-1583846783214-7229a91b20ed?q=80&w=1000&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0">
+                        <img src="https://images.unsplash.com/photo-1596783437088-0d9574652c56?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 z-10">
+                        
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                            <button class="w-full bg-white text-stone-900 py-3 uppercase text-xs font-bold tracking-widest hover:bg-stone-900 hover:text-white transition-colors shadow-lg">Add to Bag</button>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-serif text-lg text-stone-900 group-hover:text-brand-700 transition-colors">The Silk Slip Dress</h3>
+                            <p class="text-sm font-medium text-stone-900">$128</p>
+                        </div>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-1">Champagne</p>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] w-full overflow-hidden bg-white relative">
+                        <span class="absolute top-4 left-4 bg-brand-700 text-white px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest z-10">New</span>
+                        <img src="https://images.unsplash.com/photo-1551163943-3f6a2b03d28c?q=80&w=1000&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0">
+                         <img src="https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 z-10">
+                        
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                            <button class="w-full bg-white text-stone-900 py-3 uppercase text-xs font-bold tracking-widest hover:bg-stone-900 hover:text-white transition-colors shadow-lg">Add to Bag</button>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-serif text-lg text-stone-900 group-hover:text-brand-700 transition-colors">Structured Linen Blazer</h3>
+                            <p class="text-sm font-medium text-stone-900">$140</p>
+                        </div>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-1">Sand</p>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] w-full overflow-hidden bg-white relative">
+                        <img src="https://images.unsplash.com/photo-1572804013427-4d7ca7268217?q=80&w=1000&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0">
+                         <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 z-10">
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                            <button class="w-full bg-white text-stone-900 py-3 uppercase text-xs font-bold tracking-widest hover:bg-stone-900 hover:text-white transition-colors shadow-lg">Add to Bag</button>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-serif text-lg text-stone-900 group-hover:text-brand-700 transition-colors">Garden Party Midi</h3>
+                            <p class="text-sm font-medium text-stone-900">$110</p>
+                        </div>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-1">Floral</p>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card group cursor-pointer">
+                    <div class="aspect-[3/4] w-full overflow-hidden bg-white relative">
+                        <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?q=80&w=1000&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 z-0">
+                        <img src="https://images.unsplash.com/photo-1485968579580-b6d095142e6e?q=80&w=1000&auto=format&fit=crop" class="absolute inset-0 h-full w-full object-cover transition-opacity duration-700 opacity-0 group-hover:opacity-100 z-10">
+                        <div class="absolute bottom-4 left-4 right-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 z-20">
+                            <button class="w-full bg-white text-stone-900 py-3 uppercase text-xs font-bold tracking-widest hover:bg-stone-900 hover:text-white transition-colors shadow-lg">Add to Bag</button>
+                        </div>
+                    </div>
+                    <div class="mt-5">
+                        <div class="flex justify-between items-start">
+                            <h3 class="font-serif text-lg text-stone-900 group-hover:text-brand-700 transition-colors">The Poet Blouse</h3>
+                            <p class="text-sm font-medium text-stone-900">$85</p>
+                        </div>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest mt-1">White</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Values / Full Width -->
+    <section class="py-24 bg-stone-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.4\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                 <div class="order-2 md:order-1 space-y-12">
+                     <div class="value-item flex gap-6 items-start opacity-50 hover:opacity-100 transition-opacity duration-300">
+                         <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center shrink-0">
+                             <span class="font-serif italic text-xl">01</span>
+                         </div>
+                         <div>
+                             <h3 class="text-2xl font-serif mb-2">Planet Conscious</h3>
+                             <p class="text-white/60 font-light leading-relaxed">We use 100% recycled packaging and carbon-neutral shipping on every order, because looking good shouldn't cost the Earth.</p>
+                         </div>
+                     </div>
+                     <div class="value-item flex gap-6 items-start opacity-50 hover:opacity-100 transition-opacity duration-300">
+                         <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center shrink-0">
+                             <span class="font-serif italic text-xl">02</span>
+                         </div>
+                         <div>
+                             <h3 class="text-2xl font-serif mb-2">Radical Transparency</h3>
+                             <p class="text-white/60 font-light leading-relaxed">Know where your clothes come from. We publish factory audits and pricing breakdowns for every single item.</p>
+                         </div>
+                     </div>
+                     <div class="value-item flex gap-6 items-start opacity-50 hover:opacity-100 transition-opacity duration-300">
+                         <div class="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center shrink-0">
+                             <span class="font-serif italic text-xl">03</span>
+                         </div>
+                         <div>
+                             <h3 class="text-2xl font-serif mb-2">Inclusive by Design</h3>
+                             <p class="text-white/60 font-light leading-relaxed">Style has no size limit. Our entire collection is available in sizes XXS through 4X, fitted on real bodies.</p>
+                         </div>
+                     </div>
+                 </div>
+                 
+                 <div class="order-1 md:order-2 h-[500px] md:h-[700px] relative overflow-hidden rounded-sm gsap-image-reveal">
+                     <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover">
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- Testimonials (Horizontal Scroll) -->
+    <section class="py-24 bg-white overflow-hidden">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+            <h2 class="font-serif text-4xl md:text-5xl text-stone-900 text-center">Tribe Stories</h2>
+        </div>
+        
+        <div class="relative w-full">
+            <div class="flex overflow-x-auto gap-8 px-4 md:px-[max(1rem,calc((100vw-1440px)/2))] pb-12 snap-x snap-mandatory scrollbar-hide" id="stories-scroll">
+                
+                <!-- Story 1 -->
+                <div class="min-w-[300px] md:min-w-[450px] bg-stone-50 p-8 md:p-12 snap-center transition-transform hover:-translate-y-2 duration-300">
+                    <div class="flex gap-1 text-brand-600 mb-6 text-xl">★★★★★</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl text-stone-800 leading-tight mb-8">"I have never felt so confident. The fabric is breathable yet substantial."</blockquote>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <cite class="not-italic font-bold text-sm uppercase tracking-widest block">Sarah M.</cite>
+                            <span class="text-xs text-stone-500 uppercase tracking-widest">Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 2 -->
+                <div class="min-w-[300px] md:min-w-[450px] bg-stone-50 p-8 md:p-12 snap-center transition-transform hover:-translate-y-2 duration-300">
+                    <div class="flex gap-1 text-brand-600 mb-6 text-xl">★★★★★</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl text-stone-800 leading-tight mb-8">"Finally, a brand that actually understands sizing. The fit is perfect, not just 'scaled up'."</blockquote>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <cite class="not-italic font-bold text-sm uppercase tracking-widest block">Jessica T.</cite>
+                            <span class="text-xs text-stone-500 uppercase tracking-widest">Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Story 3 -->
+                <div class="min-w-[300px] md:min-w-[450px] bg-stone-50 p-8 md:p-12 snap-center transition-transform hover:-translate-y-2 duration-300">
+                    <div class="flex gap-1 text-brand-600 mb-6 text-xl">★★★★★</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl text-stone-800 leading-tight mb-8">"The packaging was plastic-free, which I love. The Poet Blouse is my new work staple."</blockquote>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/17.jpg" class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <cite class="not-italic font-bold text-sm uppercase tracking-widest block">Emily R.</cite>
+                            <span class="text-xs text-stone-500 uppercase tracking-widest">Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+                 <!-- Story 4 -->
+                <div class="min-w-[300px] md:min-w-[450px] bg-stone-50 p-8 md:p-12 snap-center transition-transform hover:-translate-y-2 duration-300">
+                    <div class="flex gap-1 text-brand-600 mb-6 text-xl">★★★★★</div>
+                    <blockquote class="font-serif text-2xl md:text-3xl text-stone-800 leading-tight mb-8">"Obsessed with the lounge set. Soft enough to sleep in, cute enough for errands."</blockquote>
+                    <div class="flex items-center gap-4">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" class="w-12 h-12 rounded-full grayscale">
+                        <div>
+                            <cite class="not-italic font-bold text-sm uppercase tracking-widest block">Priya K.</cite>
+                            <span class="text-xs text-stone-500 uppercase tracking-widest">Verified Buyer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-white pt-24 pb-12 border-t border-white/10">
+        <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 mb-20">
+                
+                <!-- Brand (4 cols) -->
+                <div class="md:col-span-4 space-y-6">
+                    <a href="#" class="font-serif text-4xl font-bold tracking-tighter text-white">
+                        HER<span class="text-brand-600">.</span>STUDIO
+                    </a>
+                    <p class="text-stone-400 font-light leading-relaxed max-w-sm">
+                        Thoughtfully designed clothing for the modern woman. Blending ethics with aesthetics, we believe in the power of a good outfit to change your day.
+                    </p>
+                    <div class="flex space-x-6 pt-4">
+                        <a href="#" class="text-white hover:text-brand-400 transition-colors">Instagram</a>
+                        <a href="#" class="text-white hover:text-brand-400 transition-colors">TikTok</a>
+                        <a href="#" class="text-white hover:text-brand-400 transition-colors">Pinterest</a>
+                    </div>
+                </div>
+
+                <!-- Links (2 cols) -->
+                <div class="md:col-span-2">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-brand-400">Shop</h4>
+                    <ul class="space-y-4 text-stone-400 font-light">
+                        <li><a href="#" class="hover:text-white transition-colors">New Arrivals</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Best Sellers</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Dresses</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Denim</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Accessories</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links (2 cols) -->
+                <div class="md:col-span-2">
+                    <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-brand-400">Help</h4>
+                    <ul class="space-y-4 text-stone-400 font-light">
+                        <li><a href="#" class="hover:text-white transition-colors">Shipping</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Returns</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sizing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter (4 cols) -->
+                <div class="md:col-span-4">
+                     <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-brand-400">Join The Tribe</h4>
+                     <p class="text-stone-400 font-light mb-6">Sign up for early access to drops and 10% off your first order.</p>
+                     <form class="flex border-b border-white/30 pb-2 focus-within:border-brand-400 transition-colors">
+                         <input type="email" placeholder="Your email address" class="w-full bg-transparent outline-none placeholder-stone-600 text-white pb-2">
+                         <button type="submit" class="text-xs font-bold uppercase tracking-widest hover:text-brand-400 transition-colors">
+                             Join
+                         </button>
+                     </form>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-stone-500 uppercase tracking-widest">
+                <p>&copy; 2024 HER Studio Clothing.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms</a>
+                    <a href="#" class="hover:text-white transition-colors">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar (Alpine) -->
+    <div class="relative z-[70]" aria-labelledby="slide-over-title" role="dialog" aria-modal="true" x-show="cartOpen" x-cloak>
+        <div class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm transition-opacity" @click="cartOpen = false" x-show="cartOpen" x-transition.opacity></div>
+        <div class="fixed inset-0 overflow-hidden">
+            <div class="absolute inset-0 overflow-hidden">
+                <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-0 md:pl-10">
+                    <div class="pointer-events-auto w-screen max-w-md transition-transform transform"
+                         x-show="cartOpen"
+                         x-transition:enter="transform transition ease-out duration-500"
+                         x-transition:enter-start="translate-x-full"
+                         x-transition:enter-end="translate-x-0"
+                         x-transition:leave="transform transition ease-in duration-500"
+                         x-transition:leave-start="translate-x-0"
+                         x-transition:leave-end="translate-x-full">
+                        
+                        <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-2xl">
+                            <div class="flex-1 overflow-y-auto px-6 py-8">
+                                <div class="flex items-start justify-between border-b border-stone-100 pb-6 mb-6">
+                                    <h2 class="text-2xl font-serif text-stone-900" id="slide-over-title">Your Bag (2)</h2>
+                                    <button type="button" class="text-stone-400 hover:text-stone-900 transition-colors" @click="cartOpen = false">
+                                        <span class="sr-only">Close panel</span>
+                                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div class="flow-root">
+                                    <ul role="list" class="-my-6 divide-y divide-stone-100">
+                                        <!-- Cart Item 1 -->
+                                        <li class="flex py-8">
+                                            <div class="h-24 w-24 flex-shrink-0 overflow-hidden border border-stone-100">
+                                                <img src="https://images.unsplash.com/photo-1551163943-3f6a2b03d28c?q=80&w=200&auto=format&fit=crop" class="h-full w-full object-cover object-center">
+                                            </div>
+                                            <div class="ml-6 flex flex-1 flex-col">
+                                                <div>
+                                                    <div class="flex justify-between text-base font-medium text-stone-900">
+                                                        <h3 class="font-serif"><a href="#">Linen Blazer</a></h3>
+                                                        <p class="ml-4">$140</p>
+                                                    </div>
+                                                    <p class="mt-1 text-sm text-stone-500">Sand / M</p>
+                                                </div>
+                                                <div class="flex flex-1 items-end justify-between text-sm">
+                                                    <div class="flex items-center border border-stone-200">
+                                                        <button class="px-2 py-1 hover:bg-stone-100">-</button>
+                                                        <span class="px-2 text-stone-600">1</span>
+                                                        <button class="px-2 py-1 hover:bg-stone-100">+</button>
+                                                    </div>
+                                                    <button type="button" class="font-medium text-brand-600 hover:text-brand-500 text-xs uppercase tracking-widest border-b border-brand-200">Remove</button>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                        <!-- Cart Item 2 -->
+                                        <li class="flex py-8">
+                                            <div class="h-24 w-24 flex-shrink-0 overflow-hidden border border-stone-100">
+                                                <img src="https://images.unsplash.com/photo-1583846783214-7229a91b20ed?q=80&w=200&auto=format&fit=crop" class="h-full w-full object-cover object-center">
+                                            </div>
+                                            <div class="ml-6 flex flex-1 flex-col">
+                                                <div>
+                                                    <div class="flex justify-between text-base font-medium text-stone-900">
+                                                        <h3 class="font-serif"><a href="#">Silk Slip Dress</a></h3>
+                                                        <p class="ml-4">$128</p>
+                                                    </div>
+                                                    <p class="mt-1 text-sm text-stone-500">Champagne / S</p>
+                                                </div>
+                                                <div class="flex flex-1 items-end justify-between text-sm">
+                                                    <div class="flex items-center border border-stone-200">
+                                                        <button class="px-2 py-1 hover:bg-stone-100">-</button>
+                                                        <span class="px-2 text-stone-600">1</span>
+                                                        <button class="px-2 py-1 hover:bg-stone-100">+</button>
+                                                    </div>
+                                                    <button type="button" class="font-medium text-brand-600 hover:text-brand-500 text-xs uppercase tracking-widest border-b border-brand-200">Remove</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="border-t border-stone-100 px-6 py-8 bg-stone-50">
+                                <div class="flex justify-between text-base font-medium text-stone-900 mb-2">
+                                    <p class="font-serif text-lg">Subtotal</p>
+                                    <p class="font-serif text-lg">$268.00</p>
+                                </div>
+                                <p class="mt-0.5 text-xs text-stone-400 mb-6">Shipping and taxes calculated at checkout.</p>
+                                <a href="#" class="flex items-center justify-center bg-stone-900 px-6 py-4 text-base font-medium text-white shadow-sm hover:bg-brand-700 transition-colors tracking-widest uppercase text-sm">Checkout</a>
+                                <div class="mt-6 flex justify-center text-center text-sm text-stone-500">
+                                    <button type="button" class="font-medium text-stone-900 hover:text-brand-600 transition-colors uppercase tracking-widest text-xs" @click="cartOpen = false">
+                                        Continue Shopping
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Animation Scripts -->
+    <script>
+        // Initialize Lenis for Smooth Scrolling
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+
+        requestAnimationFrame(raf)
+
+        // Integrate Lenis with GSAP ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Preloader Animation
+        window.addEventListener("load", () => {
+            const tl = gsap.timeline();
+
+            // Animate Loader Text
+            tl.to(".loader-text span", {
+                y: 0,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power4.out"
+            })
+            .to(".loader-text span", {
+                y: "-100%",
+                duration: 0.8,
+                stagger: 0.1,
+                ease: "power4.in",
+                delay: 0.5
+            })
+            .to("#preloader", {
+                y: "-100%",
+                duration: 1,
+                ease: "power2.inOut"
+            }, "-=0.5")
+            // Hero Animations Start Here
+            .to("#hero-image", {
+                scale: 1,
+                opacity: 1,
+                duration: 2,
+                ease: "power2.out"
+            }, "-=0.8")
+            .to("#hero-subtitle", {
+                y: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=1.5")
+            .to(".hero-line", {
+                y: 0,
+                duration: 1.2,
+                stagger: 0.2,
+                ease: "power4.out"
+            }, "-=1.2")
+            .to("#hero-btn", {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.8");
+        });
+
+        // Scroll Animations using GSAP ScrollTrigger
+        
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const navBg = document.getElementById('nav-bg');
+            if (window.scrollY > 50) {
+                navBg.classList.add('opacity-100');
+            } else {
+                navBg.classList.remove('opacity-100');
+            }
+        });
+
+        // Mood Cards Stagger
+        gsap.utils.toArray('.mood-card').forEach((card, i) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: "#collections",
+                    start: "top 70%",
+                },
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                delay: i * 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Fade Up Elements
+        gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Fade Right Elements
+        gsap.utils.toArray('.gsap-fade-right').forEach(element => {
+            gsap.from(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: "top 80%",
+                },
+                x: -50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+         // Product Cards Stagger
+         ScrollTrigger.batch(".product-card", {
+            start: "top 85%",
+            onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 1, ease: "power3.out"}),
+            onEnterBack: batch => gsap.to(batch, {opacity: 1, y: 0, stagger: 0.15, duration: 1}),
+        });
+        
+        // Initial state for batch
+        gsap.set(".product-card", {y: 60, opacity: 0});
+
+        // Value Section Image Reveal
+        gsap.from(".gsap-image-reveal img", {
+            scrollTrigger: {
+                trigger: ".gsap-image-reveal",
+                start: "top 70%",
+                scrub: 1
+            },
+            scale: 1.2,
+            duration: 1
+        });
+
+    </script>
+</body>
+</html>
